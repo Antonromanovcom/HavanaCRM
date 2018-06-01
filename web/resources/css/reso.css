@@ -1,0 +1,22 @@
+.customTreeTable .ui-icon-folder-open{
+
+    background: url("#{resource['images/o-b.png']}")!important;
+    width: 24px;
+    height: 29px;
+
+
+}
+.customTreeTable  .ui-icon-folder-collapsed{
+
+    background: url("#{resource['images/c-b.png']}")!important;
+    width: 24px;
+    height: 29px;
+
+
+}
+
+h3 {
+    color: fuchsia;
+    text-align: center;
+}
+

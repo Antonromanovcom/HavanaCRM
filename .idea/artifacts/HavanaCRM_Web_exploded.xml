@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="HavanaCRM:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/HavanaCRM_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="HavanaCRM/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="HavanaCRM" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

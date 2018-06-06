@@ -8,8 +8,8 @@
 </h:head>
 <h:body>
     <h:form>
-        <p>Welcome #{login.user}</p>
-        <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+        <p>Welcome #{userSession.user}</p>
+        <h:commandLink action="#{userSession.logout}" value="Logout"></h:commandLink>
     </h:form>
 </h:body>
 </html>

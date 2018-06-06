@@ -50,6 +50,7 @@ public class UserSession implements Serializable {
         boolean valid = LoginDAO.validate(user, pwd);
         if (valid) {
             HttpSession session = SessionUtils.getSession();
+            System.out.println("МЫ ТУТ");
             session.setAttribute("username", user);
             return "admin";
         } else {

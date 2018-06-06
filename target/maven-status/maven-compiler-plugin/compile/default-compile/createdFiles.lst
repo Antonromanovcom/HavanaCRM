@@ -1,0 +1,5 @@
+com\antonromanov\havanacrm\usersession\UserSession.class
+com\antonromanov\havanacrm\usersession\DAO\LoginDAO.class
+com\antonromanov\havanacrm\usersession\login.class
+com\antonromanov\havanacrm\usersession\filters\MainFilter.class
+com\antonromanov\havanacrm\usersession\utils\SessionUtils.class

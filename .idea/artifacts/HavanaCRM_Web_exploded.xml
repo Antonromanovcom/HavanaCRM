@@ -6,6 +6,11 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="HavanaCRM" />
+          <element id="file-copy" path="$PROJECT_DIR$/target/classes/log4j.properties" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.8.0-beta2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.8.0-beta2" />
         </element>
       </element>
     </root>

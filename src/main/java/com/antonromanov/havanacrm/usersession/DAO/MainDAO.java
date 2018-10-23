@@ -6,7 +6,7 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import java.util.ArrayList;
 
-@Local
+@Remote
 public interface MainDAO {
 
     public boolean loginCheck(String login, String password);

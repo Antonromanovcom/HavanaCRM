@@ -9,6 +9,10 @@
 
 
 <h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="admin.css" />
+    </f:facet>
+
 
     <ui:composition template="commonLayout.xhtml">
 
@@ -17,17 +21,21 @@
         <ui:define name="content">
             <div class="jsfTextPartHeader">
                 <p><h:outputText id="reportDescription" style="position: relative;"
-                                 value="#{userSession.user}"/></p>
+                                 value="#{mainBean.t}"/></p>
 
             </div>
         </ui:define>
         <ui:define name="sidebar">
-            <div class="sidebarDiv">
 
-                <p:menu model="#{mainBean.model}" />
+                <h:form id="myForm">
+                    <h:panelGroup  styleClass="custom">
+                        <p:menu model="#{sidebar.model}"/>
+                    </h:panelGroup>
+                </h:form>
 
 
-            </div>
+
+
         </ui:define>
     </ui:composition>
 

@@ -14,7 +14,9 @@
 </h:head>
 
 <h:body>
-
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="admin.css" />
+    </f:facet>
 
     <p:layout fullPage="true">
         <p:layoutUnit position="north" size="150"   resizable="false" closable="false" collapsible="false">
@@ -25,13 +27,13 @@
             <h:outputText value="South unit content." />
         </p:layoutUnit>
 
-        <p:layoutUnit position="west" size="200"  resizable="true" closable="true" collapsible="true">
+        <p:layoutUnit position="west" size="300"  resizable="true" closable="true" collapsible="true">
             <ui:insert name="sidebar">Put default content here, if any.</ui:insert>
         </p:layoutUnit>
 
 
         <p:layoutUnit position="center">
-            <ui:insert name="content">Put default content here, if any.</ui:insert>
+            <ui:insert name="content"></ui:insert>
         </p:layoutUnit>
 
     </p:layout>

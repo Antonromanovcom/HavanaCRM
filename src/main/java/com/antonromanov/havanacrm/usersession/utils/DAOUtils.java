@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.antonromanov.havanacrm.model.MenuItems;
+import com.antonromanov.havanacrm.usersession.DAO.MainDAO;
 import com.antonromanov.havanacrm.usersession.utils.DataConnect;
 
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
-public class DAOUtils {
+
+@Stateless
+public class DAOUtils implements MainDAO {
 
     Connection con = null;
 
@@ -68,16 +73,24 @@ public class DAOUtils {
         return result;
     }
 
-    public ArrayList<MenuItems> getSidebarMenuItems(Integer userId) {
+
+    public ArrayList<MenuItems> getSidebarMenuItems(String userId) {
 
         ArrayList<MenuItems> result = new ArrayList<>();
-        String callSQL = "SELECT public.get_sidebarmenu(?)";
+        String callSQL = "SELECT * from sidebarmenuitems WHERE sidebarmenuitems.user = 2";
+
+        System.out.println("User id приняли - " + userId);
 
         try {
             con = DataConnect.getConnection();
             PreparedStatement pstmt = con.prepareStatement(callSQL);
-            pstmt.setInt(1, userId);
+           // pstmt.setInt(1, Integer.parseInt(userId));
             ResultSet rs = pstmt.executeQuery();
+
+            if (rs==null){
+                System.out.println("rs - пустой ");
+            }
+
             while (rs.next()) {
                 result.add(new MenuItems(rs));
                 System.out.println("хуй - " + rs.getString(1));
@@ -90,6 +103,11 @@ public class DAOUtils {
         }
 
         return result;
+    }
+
+    @Override
+    public String Test() {
+        return "111111111111";
     }
 
 }

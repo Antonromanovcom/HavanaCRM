@@ -15,7 +15,7 @@ public class MenuItems {
     public MenuItems(ResultSet rs) throws SQLException {
 
         this.id = rs.getString("elementid");
-        this.action = actions.findAction(rs.getInt("action"));
+//        this.action = actions.findAction(rs.getInt("action"));
         this.text = rs.getString("text");
         this.note = rs.getString("note");;
     }

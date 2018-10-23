@@ -9,15 +9,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class MainFilter implements Filter{
 
-    static Logger logger = LoggerFactory.getLogger(MainFilter.class);
+//    static Logger logger = LoggerFactory.getLogger(MainFilter.class);
 
     public MainFilter() {
     }
@@ -42,7 +40,7 @@ public class MainFilter implements Filter{
                     || reqURI.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);
             }else {
-                 logger.info("Попытка пролезть не залогиневшись");
+                // logger.info("Попытка пролезть не залогиневшись");
                 resp.sendRedirect(reqt.getContextPath() + "/login.xhtml");
 
 

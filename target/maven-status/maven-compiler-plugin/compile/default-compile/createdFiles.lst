@@ -1,7 +1,15 @@
+com\antonromanov\havanacrm\model\MenuItems.class
+com\antonromanov\havanacrm\usersession\MainBean.class
+com\antonromanov\havanacrm\model\Action.class
 com\antonromanov\havanacrm\usersession\utils\SessionUtils.class
 com\antonromanov\havanacrm\usersession\UserSession.class
 com\antonromanov\havanacrm\usersession\utils\DataConnect.class
-com\antonromanov\havanacrm\usersession\DAO\LoginDAO.class
 com\antonromanov\havanacrm\usersession\login.class
 com\antonromanov\havanacrm\usersession\filters\MainFilter.class
+com\antonromanov\havanacrm\usersession\Daotest.class
+com\antonromanov\havanacrm\usersession\DAO\MainDAO.class
+com\antonromanov\havanacrm\model\Sidebar.class
+com\antonromanov\havanacrm\model\ActionType.class
+com\antonromanov\havanacrm\model\Actions.class
+com\antonromanov\havanacrm\usersession\DAO\LoginDAO.class
 com\antonromanov\havanacrm\usersession\utils\DAOUtils.class

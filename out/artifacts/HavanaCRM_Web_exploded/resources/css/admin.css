@@ -1,0 +1,30 @@
+
+.loginbutton {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border-radius: 12px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em;
+    text-align: center;
+    width: 150px;
+}
+
+
+
+.custom .ui-menu-list {
+    background-color: rgba(255,255,255,0.6);
+    color: #ffffff;
+    border: none;
+}
+.custom .ui-menu {
+    background-color: rgba(255,255,255,0.6);
+    color: #ffffff;
+    border: none;
+}
+

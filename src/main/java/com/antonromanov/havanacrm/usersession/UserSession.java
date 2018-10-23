@@ -16,10 +16,11 @@ import javax.servlet.http.HttpSession;
 public class UserSession implements Serializable {
 
     private static final long serialVersionUID = 1094801825228386363L;
-
     private String pwd;
-    private String msg;
+    private HttpSession session;
     private String user;
+
+
 
     public String getPwd() {
         return pwd;
@@ -27,26 +28,20 @@ public class UserSession implements Serializable {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-    public String getMsg() {
-        return msg;
-    }
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
     public String getUser() {
         return user;
     }
     public void setUser(String user) {
         this.user = user;
     }
-
     //validate login
     public String validateUsernamePassword() {
         boolean valid = LoginDAO.validate(user, pwd);
         if (valid) {
-            HttpSession session = SessionUtils.getSession();
+            //HttpSession session = SessionUtils.getSession();
+            session = SessionUtils.getSession();
             session.setAttribute("username", user);
-         //   session.setAttribute("id", LoginDAO.getUserId(user, pwd));
+            session.setAttribute("id", String.valueOf(LoginDAO.getUserId(user, pwd)));
             return "admin";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -57,10 +52,10 @@ public class UserSession implements Serializable {
             return "login";
         }
     }
-
     //logout event, invalidate session
     public String logout() {
-        HttpSession session = SessionUtils.getSession();
+        //HttpSession session = SessionUtils.getSession();
+        session = SessionUtils.getSession();
         session.invalidate();
         return "login";
     }

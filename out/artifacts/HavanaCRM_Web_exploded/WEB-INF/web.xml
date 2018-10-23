@@ -12,6 +12,16 @@
     </servlet>
 
 
+
+    <ejb-local-ref>
+        <ejb-ref-name>mainBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.antonromanov.havanacrm.usersession.DAO.MainDAO</local>
+        <ejb-link>DAOUtils</ejb-link>
+    </ejb-local-ref>
+
+
+
     <!-- Maps the file extensions to the JSF FacesServlet -->
     <servlet-mapping>
         <servlet-name>facesServlet</servlet-name>

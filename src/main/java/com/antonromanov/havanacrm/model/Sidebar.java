@@ -1,15 +1,14 @@
 package com.antonromanov.havanacrm.model;
 
-import com.antonromanov.havanacrm.usersession.utils.DAOUtils;
+import com.antonromanov.havanacrm.mainlogic.DAO.MainDAOimpl;
 import com.antonromanov.havanacrm.usersession.utils.SessionUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class Sidebar {
     private ArrayList<MenuItems> menu;
 
     //EJB
-    private DAOUtils daoUtils;
+    private MainDAOimpl daoUtils;
 
 
     public ArrayList<MenuItems> getSidebar() {
@@ -40,24 +39,18 @@ public class Sidebar {
 
     @PostConstruct
     private void initSampleData() {
-        daoUtils = new DAOUtils();
+        daoUtils = new MainDAOimpl();
         model = new DefaultMenuModel();
-        System.out.println("МЫ ТУТ ");
         HttpSession session = SessionUtils.getSession();
-        this.menu = daoUtils.getSidebarMenuItems((String) session.getAttribute("id"));
+        int id = Integer.parseInt((String) session.getAttribute("id"));
+        this.menu = daoUtils.getSidebarMenuItems(id);
         this.parseModel();
     }
 
     public Sidebar() {
-        //daoUtils = new DAOUtils();
-
-        //this.parseModel(daoUtils.getSidebarMenuItems((String) session.getAttribute("id")))
-        //this.parseModel();
     }
 
     public MenuModel getModel() {
-
-
         return model;
     }
 
@@ -72,8 +65,12 @@ public class Sidebar {
         if (sidebar != null) {
             for (MenuItems itemfromDB : this.getSidebar()) {
                 item = new DefaultMenuItem(itemfromDB.getNote());
-                item.setUrl("http://www.primefaces.org");
-                System.out.println("ЭЛЕМЕНТ МЕНЮ = " + itemfromDB.getNote());
+                //item.setTitle(itemfromDB.getNote());
+                item.setCommand("#{mainBean.onMainMenuClick}");
+                item.setParam("action", itemfromDB.getAction());
+                item.setUpdate(":content");
+                System.out.println("ЭЛЕМЕНТ МЕНЮ = " + itemfromDB.getNote() + "  :  " + itemfromDB.getAction());
+
                 model.addElement(item);
             }
         } else {

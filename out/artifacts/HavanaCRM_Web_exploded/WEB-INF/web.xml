@@ -13,6 +13,14 @@
 
 
 
+    <ejb-local-ref>
+        <ejb-ref-name>mainBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.antonromanov.havanacrm.mainlogic.DAO.MainDAO</local>
+        <ejb-link>MainDAOimpl</ejb-link>
+    </ejb-local-ref>
+
+
 
     <!-- Maps the file extensions to the JSF FacesServlet -->
     <servlet-mapping>

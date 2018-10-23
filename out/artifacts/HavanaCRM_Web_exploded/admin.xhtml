@@ -10,30 +10,29 @@
 
 <h:body>
     <f:facet name="last">
-        <h:outputStylesheet library="css" name="admin.css" />
+        <h:outputStylesheet library="css" name="admin.css"/>
     </f:facet>
 
 
     <ui:composition template="commonLayout.xhtml">
-
-        <ui:param name="titleH1" value="Отчет"/>
-
         <ui:define name="content">
-            <div class="jsfTextPartHeader">
-                <p><h:outputText id="reportDescription" style="position: relative;"
-                                 value="#{mainBean.t}"/></p>
 
-            </div>
+
+
+            <p:panel id="content">
+                <ui:include src="#{mainBean.currentModule}.xhtml" />
+            </p:panel>
+
+
         </ui:define>
         <ui:define name="sidebar">
 
-                <h:form id="myForm">
-                    <h:panelGroup  styleClass="custom">
+            <h:form>
+
                         <p:menu model="#{sidebar.model}"/>
-                    </h:panelGroup>
-                </h:form>
 
 
+            </h:form>
 
 
         </ui:define>

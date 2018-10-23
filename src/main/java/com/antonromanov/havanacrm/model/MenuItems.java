@@ -6,7 +6,8 @@ import java.sql.SQLException;
 public class MenuItems {
 
     private String id;
-    private Action action;
+    //private Action action;
+    private String action;
     private Actions actions;
     private String text;
     private String note;
@@ -15,9 +16,9 @@ public class MenuItems {
     public MenuItems(ResultSet rs) throws SQLException {
 
         this.id = rs.getString("elementid");
-//        this.action = actions.findAction(rs.getInt("action"));
+        this.action = rs.getString("action");
         this.text = rs.getString("text");
-        this.note = rs.getString("note");;
+        this.note = rs.getString("note");
     }
 
     public String getId() {
@@ -44,18 +45,24 @@ public class MenuItems {
         this.note = note;
     }
 
-    public MenuItems(String id, Action action, String text, String note) {
+    public MenuItems(String id, String action, String text, String note) {
         this.id = id;
         this.action = action;
         this.text = text;
         this.note = note;
     }
 
-    public Action getAction() {
+    public MenuItems(String note) {
+        this.id = "11";
+        this.text = "222222";
+        this.note = note;
+    }
+
+    public String getAction() {
         return action;
     }
 
-    public void setAction(Action action) {
+    public void setAction(String action) {
         this.action = action;
     }
 }

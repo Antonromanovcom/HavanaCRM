@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+
+    <h:form id="testForm">
+        <p:outputPanel id="testContainer">
+            <h3>ЗАКАЗЫ</h3>
+            <p:panelGrid columns="1">
+
+            <h:outputText value="Пользователь[#{mainBean.userName}] - id[#{mainBean.userName}]"/>
+            <p:dataTable id="orderTable" var="items" value="#{mainBean.orders}" selectionMode="single"
+                         selection="#{mainBean.selectedOrder}" rowKey="#{items.id}">
+
+
+                <p:column headerText="Id" style="width:30px;">
+                    <h:outputText value="#{items.id}"/>
+                </p:column>
+
+                <p:column headerText="Короткое название">
+                    <h:outputText value="#{items.shortName}"/>
+                </p:column>
+                <p:column headerText="Инфо">
+                    <h:outputText value="#{items.info}"/>
+                </p:column>
+                <p:column headerText="Клиент">
+
+                    <p:commandLink update=":testForm:carDetail" oncomplete="PF('clientDialog').show()" title="View Detail">
+                        <h:outputText value="#{items.clientTest}"/>
+                        <f:setPropertyActionListener value="#{items}" target="#{mainBean.selectedOrder}" />
+                    </p:commandLink>
+
+                </p:column>
+                <p:column headerText="Стоимость">
+                    <h:outputText value="#{items.cost}"/>
+                </p:column>
+                <p:column headerText="Дата создания">
+                    <h:outputText value="#{items.createdDate}"/>
+                </p:column>
+                <p:column headerText="Дата сдачи">
+                    <h:outputText value="#{items.deadline}"/>
+                </p:column>
+                <p:column headerText="Статус">
+                    <h:outputText value="#{items.orderStatus}"/>
+                </p:column>
+
+
+            </p:dataTable>
+            </p:panelGrid>
+            <h:panelGrid id="allOrdersButtonsPanelGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:row>
+                    <p:column colspan="7">
+                        <p:commandButton value="Add" id="buttonEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.addOrderForm}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Delete" id="buttonCancelEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.deleteOrder}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Edit" id="buttonEdit" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.onRowSelect}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Update" id="buttonUpdate" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.update}" styleClass="ui-priority-primary"/>
+                    </p:column>
+
+                </p:row>
+            </h:panelGrid>
+
+        </p:outputPanel>
+        <p:dialog header="Car Info" widgetVar="clientDialog">
+            <p:outputPanel id="carDetail" style="text-align:center;">
+                <p:panelGrid  columns="2"  rendered="#{not empty mainBean.selectedOrder}" columnClasses="label,value">
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{mainBean.selectedOrder.clientTest.clientName}" />
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+
+    </h:form>
+
+</ui:composition>
+</body>
+</html>

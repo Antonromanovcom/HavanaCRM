@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+
+    <h:form id="testForm">
+
+        <p:outputPanel id="testContainer">
+            <h3>Редактирование Заказа</h3>
+
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                <p:outputLabel for="idIB" value="id заказа:"/>
+                <h:outputText id="idIB" value="#{mainBean.selectedOrder.id}"/>
+
+                <p:outputLabel for="shortNameIB" value="Короткое название:"/>
+                <p:inputText id="shortNameIB" value="#{mainBean.selectedOrder.shortName}">
+
+                </p:inputText>
+
+                <p:outputLabel for="infoIB" value="Подробная информация:"/>
+                <p:inputText id="infoIB" value="#{mainBean.selectedOrder.info}">
+
+                </p:inputText>
+
+                <p:outputLabel for="clientIB" value="Клиент: "/>
+                <p:selectOneMenu id="clientIB" value="#{mainBean.t}" valueChangeListener="#{mainBean.clientChange}">
+                    <p:ajax event="valueChange" update="@this"/>
+                    <f:selectItems value="#{mainBean.clients}" var="cli"
+                                   itemLabel="#{cli.clientName}" itemValue="#{cli.id}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="statusIB" value="Статус: "/>
+                <p:selectOneMenu id="statusIB" value="#{mainBean.editedOrderStatus}" valueChangeListener="#{mainBean.statusChangeForOrderEdit}">
+                    <p:ajax event="valueChange" update="@this"/>
+                    <f:selectItems value="#{mainBean.statuses}" var="sta"
+                                   itemLabel="#{sta.status}" itemValue="#{sta.id}"/>
+                </p:selectOneMenu>
+
+
+                <h:outputLabel for="costIB" value="Стоимость: "/>
+                <p:spinner id="costIB" value="#{mainBean.selectedOrder.cost}" suffix=" руб " min="0" max="150000"
+                           stepFactor="1000"/>
+
+                <p:outputLabel for="createdDateIB" value="Дата создания:"/>
+                <p:calendar id="createdDateIB" value="#{mainBean.selectedOrder.createdDate}"/>
+
+                <p:outputLabel for="deadlineIB" value="Дедлайн:"/>
+                <p:calendar id="deadlineIB" value="#{mainBean.selectedOrder.deadline}"/>
+
+
+            </h:panelGrid>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:row>
+                    <p:column colspan="7">
+                        <p:commandButton value="Edit" id="buttonEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.editOrder}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Cancel" id="buttonCancelEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.editOrder}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Back" id="buttonBack" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.onOrderEditBack}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                </p:row>
+            </h:panelGrid>
+        </p:outputPanel>
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>

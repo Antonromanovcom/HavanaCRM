@@ -1,6 +1,6 @@
 package com.antonromanov.havanacrm.usersession;
 
-import com.antonromanov.havanacrm.usersession.DAO.LoginDAO;
+import com.antonromanov.havanacrm.usersession.DAO.LoginDAOimpl;
 import com.antonromanov.havanacrm.usersession.utils.SessionUtils;
 
 import java.io.Serializable;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class UserSession implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386363L;
+
     private String pwd;
     private HttpSession session;
     private String user;
-
+    private int id;
 
 
     public String getPwd() {
@@ -36,12 +36,13 @@ public class UserSession implements Serializable {
     }
     //validate login
     public String validateUsernamePassword() {
-        boolean valid = LoginDAO.validate(user, pwd);
+        boolean valid = LoginDAOimpl.validate(user, pwd);
         if (valid) {
             //HttpSession session = SessionUtils.getSession();
             session = SessionUtils.getSession();
             session.setAttribute("username", user);
-            session.setAttribute("id", String.valueOf(LoginDAO.getUserId(user, pwd)));
+            session.setAttribute("id", String.valueOf(LoginDAOimpl.getUserId(user, pwd)));
+            this.setId(LoginDAOimpl.getUserId(user, pwd));
             return "admin";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -52,11 +53,19 @@ public class UserSession implements Serializable {
             return "login";
         }
     }
-    //logout event, invalidate session
+
     public String logout() {
         //HttpSession session = SessionUtils.getSession();
         session = SessionUtils.getSession();
         session.invalidate();
         return "login";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

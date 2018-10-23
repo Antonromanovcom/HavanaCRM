@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+
+    <h:form id="testForm">
+
+        <p:outputPanel id="testContainer">
+            <h3>Добавить новый план</h3>
+            <h:panelGrid columns="2" style="margin-bottom:10px;margin-left: auto;margin-right:auto;" cellpadding="5">
+
+                <p:outputLabel for="planNameIB" value="Название плана:"/>
+                <p:inputText id="planNameIB" value="#{mainBean.newPlan.planName}" style="width: 900px">
+                </p:inputText>
+                <p:outputLabel for="planCostIB" value="Цена:"/>
+                <p:inputText id="planCostIB" value="#{mainBean.newPlan.cost}" style="width: 900px">
+                </p:inputText>
+                <p:outputLabel for="@next" value="Почасовая оплата: " />
+                <p:selectBooleanCheckbox value="#{mainBean.newPlan.perHour}" />
+            </h:panelGrid>
+            <h:panelGrid columns="2" style="margin-bottom:10px;margin-left: auto;margin-right:auto;" cellpadding="10">
+
+
+                    <p:commandButton value="Добавить новый план" id="buttonEditOrder" update=":testForm:testContainer" actionListener="#{mainBean.addPlan}" styleClass="ui-priority-primary" />
+
+
+
+                    <p:commandButton value="Назад" id="buttonBack" update=":testForm:testContainer" actionListener="#{mainBean.onOrderTypeBack}" styleClass="ui-priority-primary" />
+
+
+            </h:panelGrid>
+        </p:outputPanel>
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>

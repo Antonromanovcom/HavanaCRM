@@ -14,7 +14,6 @@ public class OrderType {
     public OrderType(Integer id, String type) {
         this.id = id;
         this.type = type;
-
     }
 
     public OrderType(ResultSet rs) throws SQLException {
@@ -49,4 +48,10 @@ public class OrderType {
   //  public void setCurrentCount(int currentCount) {
   //      this.currentCount = currentCount;
   //  }
+
+
+    @Override
+    public String toString() {
+        return type;
+    }
 }

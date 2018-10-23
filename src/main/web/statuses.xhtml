@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+
+    <h:form id="testForm">
+    <p:outputPanel id="testContainer">
+        <h3>СТАТУСЫ</h3>
+
+    <p:dataTable id="orderTable" var="status" value="#{mainBean.statuses}" selectionMode="single" selection="#{mainBean.selectedStatus}" rowKey="#{status.id}">
+
+
+        <p:column headerText="Id" style="width:30px;">
+            <h:outputText value="#{status.id}" />
+        </p:column>
+
+        <p:column headerText="Статус">
+            <h:outputText value="#{status.status}" />
+        </p:column>
+
+
+    </p:dataTable>
+
+
+        <h:panelGrid id="allStatusButtonsPanelGrid" columns="4" style="margin-bottom:10px;margin-left: auto;margin-right:auto;" cellpadding="15">
+
+                    <p:commandButton value="Добавить статус" id="buttonEditStatus" update=":testForm:testContainer" actionListener="#{mainBean.addStatusForm}" styleClass="ui-priority-primary" />
+
+                    <p:commandButton value="Удалить статус" id="buttonCancelEditStatus" update=":testForm:testContainer" actionListener="#{mainBean.deleteStatus}" styleClass="ui-priority-primary" />
+
+                    <p:commandButton value="Редактировать статус" id="buttonEdit" update=":testForm:testContainer" actionListener="#{mainBean.editStatusForm}" styleClass="ui-priority-primary" />
+
+                    <p:commandButton value="Обновить статус" id="buttonUpdate" update=":testForm:testContainer" actionListener="#{mainBean.updateStatuses}" styleClass="ui-priority-primary" />
+
+
+
+        </h:panelGrid>
+    </p:outputPanel>
+
+    </h:form>
+</ui:composition>
+</body>
+</html>

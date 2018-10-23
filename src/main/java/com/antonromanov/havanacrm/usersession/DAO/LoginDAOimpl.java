@@ -2,6 +2,7 @@ package com.antonromanov.havanacrm.usersession.DAO;
 
 
 import com.antonromanov.havanacrm.mainlogic.DAO.MainDAOimpl;
+import com.antonromanov.havanacrm.usersession.Login;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +22,15 @@ public class LoginDAOimpl {
         return daoUtils.loginCheck(user, password);
     }
 
+    public static boolean checkOnlyLogin(String user) {
+        MainDAOimpl daoUtils = new MainDAOimpl();
+        return daoUtils.onlyLoginCheck(user);
+    }
+    public static boolean checkOnlyEmail(String email) {
+        MainDAOimpl daoUtils = new MainDAOimpl();
+        return daoUtils.onlyEmailCheck(email);
+    }
+
     public static int getUserId(String user, String password) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -28,4 +38,9 @@ public class LoginDAOimpl {
         return daoUtils.getUserId(user, password);
     }
 
+    public static void createNewUser(Login newUser) {
+
+        MainDAOimpl daoUtils = new MainDAOimpl();
+        daoUtils.createNewUser(newUser);
+    }
 }

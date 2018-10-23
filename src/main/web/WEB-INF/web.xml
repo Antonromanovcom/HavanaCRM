@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+
+    <!-- The JSF FacesServlet - The JSF Front Controller, manages the the request processing lifecycle for JSF-->
+    <servlet>
+        <servlet-name>facesServlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
+
+    <ejb-local-ref>
+        <ejb-ref-name>mainBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.antonromanov.havanacrm.mainlogic.DAO.MainDAO</local>
+        <ejb-link>MainDAOimpl</ejb-link>
+    </ejb-local-ref>
+
+
+
+    <!-- Maps the file extensions to the JSF FacesServlet
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping> -->
+
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+
+    <context-param>
+        <param-name>facelets.SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+
+    <welcome-file-list>
+
+    <welcome-file>faces/hello.xhtml</welcome-file>
+
+</welcome-file-list>
+</web-app>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>login</title>
+</h:head>
+<h:body id="mainn">
+
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="main.css" />
+    </f:facet>
+
+    <h:form id="form">
+        <div id="main" >
+            <div id="vh" class="box">
+                <h:panelGrid columns="1"  styleClass="panelGridCenter" border="0">
+                    <h:outputText value="Логин: " />
+                    <h:inputText id="username" value="#{registration.newUser.login}" styleClass="text-input"/>
+                    <h:message for="username"/>
+                    <br></br><br></br>
+
+                    <h:outputText value="Пароль: " />
+                    <h:inputSecret id="password" value="#{registration.newUser.password}" styleClass="text-input"/>
+                    <h:message for="password"/>
+                    <br></br><br></br>
+
+                    <h:outputText value="Email: " />
+                    <h:inputSecret id="email" value="#{registration.newUser.email}" styleClass="text-input"/>
+                    <h:message for="email"/>
+                    <div id = "dpanel"></div>
+                    <h:panelGroup  style="display:block; text-align:center">
+                        <h:commandButton action="#{registration.RegisterUser}"  value="Зарегистрировать" styleClass="loginbutton"/>
+                    </h:panelGroup>
+                    <p:dialog header="Ошибка регистрации!" widgetVar="dlg1" minHeight="40" modal="false" dynamic="true" resizable="false" appendTo="@(body)">
+                        <h:panelGrid columns="1"  styleClass="panelGridCenter" border="0">
+                            <p:outputLabel value="#{registration.message}" />
+                            <p:commandButton value="1234" id="hoursCountButton"
+                                             actionListener="#{registration.dialogOk}" styleClass="ui-priority-primary"/>
+                        </h:panelGrid>
+                    </p:dialog>
+
+                </h:panelGrid>
+            </div>
+
+        </div>
+    </h:form>
+
+</h:body>
+</html>

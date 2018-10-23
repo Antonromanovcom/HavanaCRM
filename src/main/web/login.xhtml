@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>login</title>
+</h:head>
+<h:body id="main">
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="reso.css" />
+    </f:facet>
+
+    <h:form id="form">
+        <h:panelGrid columns="1"  styleClass="panelGridCenter" border="0">
+            <p:graphicImage  url="/resources/images/logo.gif" id="grpImage" style="background-color: transparent; margin-top: 180px"/>
+        </h:panelGrid>
+        <div id="wrapper">
+        <div id="vh" class="box">
+        <h:panelGrid columns="1"  styleClass="panelGridCenter" border="0">
+                <h:outputText value="Username" />
+                <h:inputText id="username" value="#{userSession.user}" styleClass="text-input"></h:inputText>
+                <h:message for="username"></h:message>
+                <br></br><br></br>
+
+                <h:outputText value="Password" />
+                <h:inputSecret id="password" value="#{userSession.pwd}" styleClass="text-input"></h:inputSecret>
+                <h:message for="password"></h:message>
+            <div id = "dpanel"></div>
+                <h:panelGroup  style="display:block; text-align:center">
+                    <h:commandButton action="#{userSession.validateUsernamePassword}" value="Login" styleClass="loginbutton"></h:commandButton>
+                </h:panelGroup>
+            </h:panelGrid>
+       </div>
+        </div>
+        <div id="reglink">
+        <h:panelGroup style="display:block; text-align:center">
+            <p:link outcome="signin.xhtml" value="Зарегистрироваться"/>
+        </h:panelGroup>
+        </div>
+    </h:form>
+</h:body>
+</html>

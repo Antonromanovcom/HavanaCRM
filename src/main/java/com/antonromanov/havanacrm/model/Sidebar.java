@@ -69,7 +69,8 @@ public class Sidebar {
                 item.setCommand("#{mainBean.onMainMenuClick}");
                 item.setParam("action", itemfromDB.getAction());
                 item.setUpdate(":content");
-                System.out.println("ЭЛЕМЕНТ МЕНЮ = " + itemfromDB.getNote() + "  :  " + itemfromDB.getAction());
+                item.setIcon(itemfromDB.getIcon());
+
 
                 model.addElement(item);
             }

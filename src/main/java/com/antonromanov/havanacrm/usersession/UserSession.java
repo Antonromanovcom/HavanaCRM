@@ -2,14 +2,13 @@ package com.antonromanov.havanacrm.usersession;
 
 import com.antonromanov.havanacrm.usersession.DAO.LoginDAOimpl;
 import com.antonromanov.havanacrm.usersession.utils.SessionUtils;
-
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 
 @ManagedBean
 @SessionScoped
@@ -20,6 +19,7 @@ public class UserSession implements Serializable {
     private HttpSession session;
     private String user;
     private int id;
+
 
 
     public String getPwd() {
@@ -34,7 +34,6 @@ public class UserSession implements Serializable {
     public void setUser(String user) {
         this.user = user;
     }
-    //validate login
     public String validateUsernamePassword() {
         boolean valid = LoginDAOimpl.validate(user, pwd);
         if (valid) {
@@ -53,7 +52,6 @@ public class UserSession implements Serializable {
             return "login";
         }
     }
-
     public String logout() {
         //HttpSession session = SessionUtils.getSession();
         session = SessionUtils.getSession();
@@ -61,10 +59,11 @@ public class UserSession implements Serializable {
         return "login";
     }
 
+
+
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }

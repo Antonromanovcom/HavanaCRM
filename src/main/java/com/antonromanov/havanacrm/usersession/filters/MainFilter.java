@@ -35,6 +35,7 @@ public class MainFilter implements Filter{
 
             String reqURI = reqt.getRequestURI();
             if (reqURI.indexOf("/login.xhtml") >= 0
+                    || reqURI.indexOf("/signin.xhtml") >= 0
                     || (ses != null && ses.getAttribute("username") != null)
                     || reqURI.indexOf("/public/") >= 0
                     || reqURI.contains("javax.faces.resource")) {

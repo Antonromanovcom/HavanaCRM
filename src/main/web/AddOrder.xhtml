@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<body>
+<ui:composition>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="adddialog.css" />
+    </f:facet>
+    <h:form id="testForm">
+        <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true">
+        </p:messages>
+        <p:outputPanel id="testContainer">
+            <h3>ДОБАВЛЕНИЕ НОВОГО ЗАКАЗА</h3>
+            <h:panelGrid columns="2" id="grid" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="shortNameIB" value="Короткое название:"/>
+                <p:inputText id="shortNameIB"  value="#{mainBean.newOrder.shortName}" style="width: 630px"/>
+
+                <p:outputLabel for="infoIB" value="Полная информация:"/>
+                <p:inputText id="infoIB" value="#{mainBean.newOrder.info}" style="width: 630px"/>
+
+                <p:outputLabel for="clientIB" value="Клиент: "/>
+                <p:selectOneMenu id="clientIB" value="#{mainBean.newOrder.clientTest}" converter="clientConverter"
+                                 valueChangeListener="#{mainBean.clientForNewOrderChange}" style="width: 600px">
+                    <p:ajax event="valueChange" update="@this"/>
+                    <f:selectItems value="#{mainBean.clients}" var="cli"
+                                   itemLabel="#{cli.clientName}" itemValue="#{cli}"/>
+                    <p:column>
+                        <h:outputText value="#{cli.clientName}" />
+                    </p:column>
+                </p:selectOneMenu>
+
+
+                <p:outputLabel for="statusIB" value="Статус заказа: "/>
+                <p:selectOneMenu id="statusIB" value="#{mainBean.addedOrderStatus}"
+                                 valueChangeListener="#{mainBean.statusChangeForOrderAdd}" style="width: 600px">
+                    <p:ajax event="valueChange" update="@this"/>
+                    <f:selectItem itemLabel="Выберете статус" itemValue="000" />
+                    <f:selectItems value="#{mainBean.statuses}" var="sta"
+                                   itemLabel="#{sta.status}" itemValue="#{sta.id}"/>
+                </p:selectOneMenu>
+
+                <!-- ТИП ЗАКАЗА -->
+
+                <p:outputLabel for="ordertypeIB" value="Тип заказа: "/>
+                <p:selectOneMenu id="ordertypeIB" value="#{mainBean.orderType4Add}" converter="orderTypeConverter" valueChangeListener="#{mainBean.selectOrderType4NewOrder}" style="width: 600px">
+                    <p:ajax event="valueChange" update="ordersubtypeIB"/>
+                    <f:selectItems value="#{mainBean.orderTypesStatistic}" var="ordertypelist"
+                                   itemLabel="#{ordertypelist.type}" itemValue="#{ordertypelist}"/>
+                    <p:column>
+                        <h:outputText value="#{ordertypelist.type}" />
+                    </p:column>
+                </p:selectOneMenu>
+
+
+                <!-- ПОДТИП ЗАКАЗА converter="orderSubTypeConverter" -->
+
+                <p:outputLabel for="ordersubtypeIB" value="Подтип заказа: "/>
+                <p:selectOneMenu id="ordersubtypeIB" value="#{mainBean.orderSubType4Add}"  converter="orderSubTypeConverter" valueChangeListener="#{mainBean.selectPlan4NewOrder}" style="width: 600px">
+                <f:selectItem itemLabel="Select One Item"/>
+                <f:selectItems value="#{mainBean.orderSubTypes}" var="ordersubtypelist"
+                               itemLabel="#{ordersubtypelist.subtype}" itemValue="#{ordersubtypelist}"/>
+                <p:ajax event="valueChange" update="orderPlanIB"/>
+
+                </p:selectOneMenu>
+
+
+
+                <!-- ПЛАН converter="orderSubTypeConverter" -->
+
+                <p:outputLabel for="orderPlanIB" value="План: "/>
+                <p:selectOneMenu id="orderPlanIB" value="#{mainBean.orderPlan4Add}" converter="planConverter" valueChangeListener="#{mainBean.selectFinalOrderTypeWithCost4NewOrder}" style="width: 600px">
+
+                    <f:selectItem itemLabel="Select One Item"/>
+                    <f:selectItems value="#{mainBean.plans}" var="orderplanlist" itemLabel="#{orderplanlist.planName}" itemValue="#{orderplanlist}"/>
+                    <p:ajax event="valueChange"  update="costIB, orderPlan2IB" />
+
+                </p:selectOneMenu>
+
+                <p:inputText id="orderPlan2IB"  value="#{mainBean.orderPlan4Add.planName}" rendered="false"/>
+
+
+                <h:outputLabel for="costIB" value="Стоимость: "/>
+                <p:inputText id="costIB"  value="#{mainBean.newOrder.cost}" style="width: 630px"/>
+
+                <p:outputLabel for="createdDateIB" value="Дата создания:"/>
+                <p:calendar id="createdDateIB" value="#{mainBean.newOrder.createdDate}" style="width: 600px"/>
+
+                <p:outputLabel for="deadlineIB" value="Дата съемки:"/>
+                <p:calendar id="deadlineIB" value="#{mainBean.newOrder.deadline}" style="width: 600px">
+                </p:calendar>
+
+            </h:panelGrid>
+
+            <p:dialog header="Подсчет цены заказа" widgetVar="dlg2" modal="false" height="100">
+                <p:outputLabel for="hourscountIB" value="Введите количество часов съемки:"/>
+                <p:inputText id="hourscountIB"  value="#{mainBean.hoursCount}"/>
+
+                <p:commandButton value="Ok" id="hoursCountButton" update="costIB"
+                                  actionListener="#{mainBean.hoursCountChange}" styleClass="ui-priority-primary"/>
+            </p:dialog>
+
+            <h:panelGrid columns="3" style="margin-bottom:10px;margin-left: auto;margin-right:auto;" cellpadding="10">
+
+                        <p:commandButton value="Добавить заказ" id="buttonEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.addOrder}" styleClass="ui-priority-primary"/>
+
+
+                        <p:commandButton value="Отменить ввод" id="buttonCancelEditOrder" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.setNewOrderNull}" styleClass="ui-priority-primary"/>
+
+
+                        <p:commandButton value="Назад" id="buttonBack" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.onOrderEditBack}" styleClass="ui-priority-primary"/>
+
+
+            </h:panelGrid>
+        </p:outputPanel>
+
+
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>

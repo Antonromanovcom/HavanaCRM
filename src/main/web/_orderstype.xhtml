@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+    <h3>ТИПЫ ЗАКАЗОВ</h3>
+    <h:form id="testForm">
+        <p:outputPanel id="testContainer">
+            <p:panelGrid columns="2" layout="grid">
+                <p:dataTable id="orderTable" var="ordertype" value="#{mainBean.orderTypesStatistic}"
+                             selectionMode="single" selection="#{mainBean.selectedOrderType}"
+                             rowKey="#{ordertype.id}">
+                    <p:ajax event="rowSelect" listener="#{mainBean.onMainOrderTypeRowSelect}"
+                            update=":testForm:testContainer"/>
+                    <p:column headerText="Тип">
+                        <h:outputText value="#{ordertype.type}" style="width:50px;"/>
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable id="orderTable1" var="ordersubtype" value="#{mainBean.orderSubTypes}"
+                             selectionMode="single" selection="#{mainBean.selectedOrderSubType}"
+                             rowKey="#{ordersubtype.id}">
+
+                    <p:column headerText="Подтип">
+                        <h:outputText value="#{ordersubtype.subtype}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panelGrid>
+
+
+            <h:panelGrid id="allOrdersButtonsPanelGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:row>
+                    <p:column colspan="7">
+                        <p:commandButton value="Add" id="buttonAddOrderType" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.addOrderTypeForm}"
+                                         styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Delete" id="buttonDeleteOrderType" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.deleteOrderType}" styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Edit" id="buttonEditOrderType" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.editOrderTypeForm}"
+                                         styleClass="ui-priority-primary"/>
+                    </p:column>
+                    <p:column colspan="7">
+                        <p:commandButton value="Update" id="buttonUpdate" update=":testForm:testContainer"
+                                         actionListener="#{mainBean.updateOrderTypes}"
+                                         styleClass="ui-priority-primary"/>
+                    </p:column>
+
+
+                </p:row>
+            </h:panelGrid>
+            <p:panelGrid columns="1" layout="grid">
+                <p:treeTable value="#{mainBean.ordersTypeTreeNode}" var="tree">
+
+                    <p:column headerText="Name">
+                        <h:outputText value="#{tree.type}" />
+                    </p:column>
+
+                </p:treeTable>
+
+            </p:panelGrid>
+
+        </p:outputPanel>
+
+    </h:form>
+</ui:composition>
+</body>
+</html>

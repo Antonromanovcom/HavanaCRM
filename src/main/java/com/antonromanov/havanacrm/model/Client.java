@@ -16,7 +16,8 @@ public class Client {
     private String email;
     private Date createdDate;
     private Date birthDay;
-    //private String vk; - профиль vk
+    private Long whereClientFrom;
+    private String whereClientFromText;
 
 
     public Client(Integer id, String clientN, String phone, String email, Date createdDate, Date birthDay) {
@@ -30,8 +31,9 @@ public class Client {
     public Client(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
         this.clientName = rs.getString("name");
-       // this.phone = rs.getString("name");
-        //this.email = rs.getString("email");
+        this.phone = rs.getString("phone");
+        this.email = rs.getString("email");
+        this.whereClientFrom = rs.getLong("whereclientfrom");
         this.createdDate = rs.getDate("date_created");
         this.birthDay = rs.getDate("birthday");
     }
@@ -111,19 +113,6 @@ public class Client {
         return utilDate;
     }
 
-   /**
-    //конвертим базовую дату, которая у нас в SQLDate в Java Utils Date
-    public java.util.Date getCreatedJavaDate() {
-        return this.sqlDatetoDate(createdDate);
-    }
-
-    //конвертим базовую дату, которая у нас в SQLDate в Java Utils Date
-    public java.util.Date getJavaDeadline() {
-        return this.sqlDatetoDate(deadline);
-    }
-
-*/
-
     @Override
     public java.lang.String toString() {
         return  clientName;
@@ -138,5 +127,21 @@ public class Client {
         this.createdDate = null;
         this.birthDay = null;
 
+    }
+
+    public Long getWhereClientFrom() {
+        return whereClientFrom;
+    }
+
+    public void setWhereClientFrom(Long whereClientFrom) {
+        this.whereClientFrom = whereClientFrom;
+    }
+
+    public String getWhereClientFromText() {
+        return whereClientFromText;
+    }
+
+    public void setWhereClientFromText(String whereClientFromText) {
+        this.whereClientFromText = whereClientFromText;
     }
 }

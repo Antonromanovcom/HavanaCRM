@@ -1,7 +1,8 @@
 package com.antonromanov.havanacrm.usersession;
 
-public class login {
+public class Login {
 
+    private String login;
     private String email;
     private String password;
 
@@ -17,5 +18,10 @@ public class login {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
 }

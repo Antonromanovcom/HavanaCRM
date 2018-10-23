@@ -11,6 +11,7 @@ public class MenuItems {
     private Actions actions;
     private String text;
     private String note;
+    private String icon;
 
 
     public MenuItems(ResultSet rs) throws SQLException {
@@ -18,7 +19,8 @@ public class MenuItems {
         this.id = rs.getString("elementid");
         this.action = rs.getString("action");
         this.text = rs.getString("text");
-        this.note = rs.getString("note");
+        this.note = " " + rs.getString("note");
+        this.icon = rs.getString("icon");
     }
 
     public String getId() {
@@ -64,5 +66,14 @@ public class MenuItems {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

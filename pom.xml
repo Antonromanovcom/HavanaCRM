@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>2.2.10</version>
+            <version>2.4.0</version>
         </dependency>
 
         <!--Primefaces library-->
@@ -40,7 +40,6 @@
             <version>${primefaces-version}</version>
         </dependency>
 
-        <!--Primefaces themes-->
         <!--Primefaces темы-->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
@@ -65,11 +64,7 @@
             <version>1.1.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces-comps</artifactId>
-            <version>1.8.1</version>
-        </dependency>
+
 
         <dependency>
             <groupId>org.slf4j</groupId>

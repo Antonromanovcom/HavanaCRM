@@ -24,23 +24,18 @@ public class UserSession implements Serializable {
     public String getPwd() {
         return pwd;
     }
-
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-
     public String getMsg() {
         return msg;
     }
-
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
     public String getUser() {
         return user;
     }
-
     public void setUser(String user) {
         this.user = user;
     }
@@ -50,8 +45,8 @@ public class UserSession implements Serializable {
         boolean valid = LoginDAO.validate(user, pwd);
         if (valid) {
             HttpSession session = SessionUtils.getSession();
-            System.out.println("МЫ ТУТ");
             session.setAttribute("username", user);
+         //   session.setAttribute("id", LoginDAO.getUserId(user, pwd));
             return "admin";
         } else {
             FacesContext.getCurrentInstance().addMessage(

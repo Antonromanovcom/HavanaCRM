@@ -2,9 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
->
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
 
 <h:head>
     <meta http-equiv="refresh" content="#{metaRefresh}"/>
@@ -12,59 +15,27 @@
 
 <h:body>
 
-    <div id="page">
 
-        <div id="header">
-            <ui:insert name="header" >
-                <ui:include src="commonHeader.xhtml" />
-            </ui:insert>
-        </div>
+    <p:layout fullPage="true">
+        <p:layoutUnit position="north" size="150"   resizable="false" closable="false" collapsible="false">
+            <h:outputText value="North unit content." />
+        </p:layoutUnit>
 
-        <div id="content">
-            <!--
-            <ui:insert name="content" >
-                <ui:include src="commonContent.xhtml" />
-            </ui:insert> -->
+        <p:layoutUnit position="south" size="100"  resizable="true" closable="true" collapsible="true">
+            <h:outputText value="South unit content." />
+        </p:layoutUnit>
 
-            <!-- CONTENT -->
-            <div class="jsfTextPart" >
-                <!-- Title -->
-                <div id="jsfTextPartHeaderId" class="jsfTextPartHeader">
-                    <c:if test="#{!ResoUtils.isEmpty(titleH1)}">
-                    <!--  <c:if test="#{titleH1}">  -->
-                <!--    <ice:outputText styleClass="h1" value="#{titleH1}"/>   -->
-                    <h:outputText styleClass="h1"  value="#{titleH1}"/>
-                    <br/>
-                </c:if>
+        <p:layoutUnit position="west" size="200"  resizable="true" closable="true" collapsible="true">
+            <ui:insert name="sidebar">Put default content here, if any.</ui:insert>
+        </p:layoutUnit>
 
-                     <c:if test="#{!ResoUtils.isEmpty(titleH3)}">
-                             <h:outputText styleClass="h1"  value="#{titleH3}"/>
-                         </c:if>
-                     </div>
 
-                     <!-- Error message -->
-                    <!-- <ui:remove>
-                         <div id="errMsgTextId" style="position: relative; padding-bottom:10px;">
-                             <ice:outputText id="errorMessage" styleClass="errorMessage"
-                                             value="#{userSessionController.errorMessage}"/>
-                         </div>
-                     </ui:remove> -->
-                     <!-- Content -->
-                    <div>
-                        <ui:insert name="body"/>
-                    </div>
+        <p:layoutUnit position="center">
+            <ui:insert name="content">Put default content here, if any.</ui:insert>
+        </p:layoutUnit>
 
-                </div>
+    </p:layout>
 
-            </div>
-
-            <div id="footer">
-                <ui:insert name="footer" >
-                    <ui:include src="commonFooter.xhtml" />
-                </ui:insert>
-            </div>
-
-        </div>
 
 
     </h:body>

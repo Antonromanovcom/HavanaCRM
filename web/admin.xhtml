@@ -1,15 +1,38 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <title>Facelet Title</title>
-</h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
 <h:body>
-    <h:form>
-        <p>Welcome #{userSession.user}</p>
-        <h:commandLink action="#{userSession.logout}" value="Logout"></h:commandLink>
-    </h:form>
+
+    <ui:composition template="commonLayout.xhtml">
+
+        <ui:param name="titleH1" value="Отчет"/>
+
+        <ui:define name="content">
+            <div class="jsfTextPartHeader">
+                <p><h:outputText id="reportDescription" style="position: relative;"
+                                 value="#{userSession.user}"/></p>
+
+            </div>
+        </ui:define>
+        <ui:define name="sidebar">
+            <div class="sidebarDiv">
+
+                <p:menu model="#{mainBean.model}" />
+
+
+            </div>
+        </ui:define>
+    </ui:composition>
+
+
 </h:body>
+
+
 </html>

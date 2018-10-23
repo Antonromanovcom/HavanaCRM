@@ -8,31 +8,28 @@
 <h:head>
     <title>login</title>
 </h:head>
-<h:body>
+<h:body id="main">
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="reso.css" />
+    </f:facet>
+
     <h:form id="form">
-        <div style="border: 1px;">
-            <span> Global Message Area:</span>
-            <h:messages globalOnly="true" errorClass="err" warnClass="warn" infoClass="info"></h:messages>
-            <h:messages globalOnly="false" errorClass="err" warnClass="warn" infoClass="info"></h:messages>
-        </div>
-        <h3>JSF Login Logout</h3>
-        <p:panel id="basic" header="Basic" footer="Movie Details" style="margin:0px,auto">
-            <h:panelGrid columns="1" style="width:100%" border="1">
-                 <h:outputText value="The story begins as Don Vito Corleone..." />
+        <div id="vh" class="box">
+        <h:panelGrid columns="1"  styleClass="panelGridCenter" border="0">
+                <h:outputText value="Username" />
+                <h:inputText id="username" value="#{userSession.user}" styleClass="text-input"></h:inputText>
+                <h:message for="username"></h:message>
+                <br></br><br></br>
+
+                <h:outputText value="Password" />
+                <h:inputSecret id="password" value="#{userSession.pwd}" styleClass="text-input"></h:inputSecret>
+                <h:message for="password"></h:message>
+            <div id = "dpanel"></div>
+                <h:panelGroup  style="display:block; text-align:center">
+                    <h:commandButton action="#{userSession.validateUsernamePassword}" value="Login" styleClass="loginbutton"></h:commandButton>
+                </h:panelGroup>
             </h:panelGrid>
-        </p:panel>
-        <h:outputText value="Username" />
-        <h:inputText id="username" value="#{userSession.user}"></h:inputText>
-        <h:message for="username"></h:message>
-        <br></br><br></br>
-
-        <h:outputText value="Password" />
-        <h:inputSecret id="password" value="#{userSession.pwd}"></h:inputSecret>
-        <h:message for="password"></h:message>
-        <br></br><br></br>
-
-        <h:commandButton action="#{userSession.validateUsernamePassword}"
-                         value="Login"></h:commandButton>
+       </div>
     </h:form>
 </h:body>
 </html>

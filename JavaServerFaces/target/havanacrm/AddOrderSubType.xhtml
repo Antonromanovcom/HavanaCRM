@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<body>
+<ui:composition>
+
+
+    <h:form id="testForm">
+
+        <p:outputPanel id="testContainer">
+            <h3>Добавление нового подтипа</h3>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                <h:outputText  for="forTypeIB" value="Добавление подтипа к типу: "/>
+                <p:inputText id="forTypeIB" value="#{mainBean.selectedOrderType.type}" disabled="true"/>
+
+                <p:outputLabel for="shortNameIB" value="Имя подтипа:"/>
+                <p:inputText id="shortNameIB" value="#{mainBean.newOrdeSubType.subtype}">
+                </p:inputText>
+
+            </h:panelGrid>
+            <h:panelGrid columns="2" style="margin-bottom:10px;margin-left: auto;margin-right:auto;" cellpadding="10">
+
+
+                    <p:commandButton value="Добавить новый подтип" id="buttonEditOrder" update=":testForm:testContainer" actionListener="#{mainBean.addOrderSubType}" styleClass="ui-priority-primary" />
+
+
+                    <p:commandButton value="Назад" id="buttonBack" update=":testForm:testContainer" actionListener="#{mainBean.onOrderTypeBack}" styleClass="ui-priority-primary" />
+
+
+            </h:panelGrid>
+        </p:outputPanel>
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>
